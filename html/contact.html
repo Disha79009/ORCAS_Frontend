@@ -52,29 +52,25 @@
     </section>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("contactForm").addEventListener("submit", async function (event) {
-                event.preventDefault(); // Prevent page reload
-                
-                const name = document.getElementById("name").value;
-                const email = document.getElementById("email").value;
-                const message = document.getElementById("message").value;
-    
-                try {
-                    const response = await fetch("http://localhost:5000/contact", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ name, email, message }),
-                    });
-    
-                    const result = await response.json();
-                    alert(result.message); // Show success or error message
-                } catch (error) {
-                    alert("Error submitting form. Please try again.");
-                    console.error("Form submission error:", error);
-                }
-            });
-        });
+        const BACKEND_URL = "https://orcas-backend.onrender.com"; // Your deployed backend URL
+
+document.getElementById("contact-form").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Prevent page reload
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    const response = await fetch(`${BACKEND_URL}/api/inquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+    });
+
+    const result = await response.json();
+    alert(result.message || "Inquiry submitted successfully!");
+});
+
     </script>
     
 
