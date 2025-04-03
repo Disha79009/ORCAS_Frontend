@@ -28,7 +28,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../images/logo.png') no-repeat center center;
+    background: url('images/logo.png') no-repeat center center;
     background: size 80%;
     opacity: 0.1;  /* Light watermark effect */
     z-index: -1;
